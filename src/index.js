@@ -1,4 +1,3 @@
-// @ts-check
 require("dotenv").config();
 const fs = require("fs");
 
@@ -24,7 +23,7 @@ client.on("message", async (message) => {
   const args = message.content
     .slice(process.env.COMMAND_TRIGGER.length)
     .split(/ +/);
-  const commandName = args.shift().toLowerCase();
+  const commandName = args.shift();
 
   if (!commands.has(commandName)) return;
 

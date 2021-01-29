@@ -27,14 +27,8 @@ module.exports = {
     await table.screenshot({ path: PATH });
 
     // Getting data
-    await page.waitForSelector("#proportionVaccinesMin");
     await page.waitForSelector("#proportionVaccinesMax");
-    const percentageElementMin = await page.$("#proportionVaccinesMin");
     const percentageElementMax = await page.$("#proportionVaccinesMax");
-    const textMin = await page.evaluate(
-      (element) => element.textContent,
-      percentageElementMin
-    );
     const textMax = await page.evaluate(
       (element) => element.textContent,
       percentageElementMax
@@ -45,7 +39,7 @@ module.exports = {
     const attachment = new Discord.MessageAttachment(PATH);
     // Send the attachment in the message channel
     message.channel.send(
-      `Entre ${textMin}% et ${textMax}% de français vaccinés`,
+      `Environ ${textMax}% de français vaccinés`,
       attachment
     );
   },

@@ -20,11 +20,13 @@ module.exports = {
     await page.goto("https://covidtracker.fr/vaccintracker/", {
       waitUntil: "networkidle2",
     });
+    console.log("On page");
 
     // Taking screenshot
     await page.waitForSelector("#tableauVaccin");
     const table = await page.$("#tableauVaccin");
     await table.screenshot({ path: PATH });
+    console.log("Taking screenshot");
 
     // Getting data
     await page.waitForSelector("#proportionVaccinesMax");
@@ -33,10 +35,12 @@ module.exports = {
       (element) => element.textContent,
       percentageElementMax
     );
+    console.log("Getting percentage");
     await browser.close();
 
     // Create the attachment using MessageAttachment
     const attachment = new Discord.MessageAttachment(PATH);
+    console.log("Sending attachment");
     // Send the attachment in the message channel
     message.channel.send(
       `Environ ${textMax}% de français vaccinés`,

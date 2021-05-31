@@ -10,9 +10,8 @@ module.exports = {
 
     message.channel
       .send({
-        files: [isFriday ? fridayFile : notFridayFile]
+        files: [isFriday ? fridayFile : notFridayFile],
       })
-      .then(console.log)
       .catch(console.error);
-  }
+  },
 };
